@@ -60,3 +60,4 @@ Share the main link (without `/admin`) with the group.
 | `lib/committee.ts` | Shares, months and amounts (shared by server and browser) |
 | `lib/actions.ts` | Admin actions and their checks |
 | `lib/store.ts` | Saves data to Upstash Redis, or a local file in development |
+| `data/seed.json` | Starting group and members, saved once when the database is empty. After that, change things in `/admin`. |

@@ -4,6 +4,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { randomUUID } from "crypto";
 import { Redis } from "@upstash/redis";
+import seed from "@/data/seed.json";
 import { AppError } from "./errors";
 import type { State } from "./types";
 
@@ -26,6 +27,11 @@ function normalize(raw: any): State {
   };
 }
 
+/** The group in data/seed.json. It's saved once, when the database is still empty. */
+function seedState(): State {
+  return normalize({ ...seed, updatedAt: new Date().toISOString() });
+}
+
 interface Store {
   read(): Promise<State>;
   write(state: State): Promise<void>;
@@ -38,6 +44,10 @@ class RedisStore implements Store {
   constructor(private redis: Redis) {}
 
   async read() {
+    const saved = await this.redis.get(STATE_KEY);
+    if (saved) return normalize(saved);
+    // nx: if two requests seed at once, only the first one writes.
+    await this.redis.set(STATE_KEY, seedState(), { nx: true });
     return normalize(await this.redis.get(STATE_KEY));
   }
 
@@ -72,7 +82,7 @@ class FileStore implements Store {
     try {
       return normalize(JSON.parse(await fs.readFile(this.file, "utf8")));
     } catch (e) {
-      if ((e as NodeJS.ErrnoException).code === "ENOENT") return emptyState();
+      if ((e as NodeJS.ErrnoException).code === "ENOENT") return seedState();
       throw e;
     }
   }

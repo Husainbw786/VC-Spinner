@@ -1,0 +1,104 @@
+{
+  "group": {
+    "name": "VC 2026",
+    "amount": 2000,
+    "currency": "₹",
+    "startMonth": "2026-10",
+    "perMonth": 2
+  },
+  "members": [
+    {
+      "id": "4b814857",
+      "name": "Husain Baghwala",
+      "phone": "",
+      "shares": 1,
+      "openedBefore": 0
+    },
+    {
+      "id": "7ca3c63e",
+      "name": "Fatema Ameen",
+      "phone": "",
+      "shares": 2,
+      "openedBefore": 0
+    },
+    {
+      "id": "3d0afecb",
+      "name": "Munira mohna wala",
+      "phone": "",
+      "shares": 2,
+      "openedBefore": 0
+    },
+    {
+      "id": "0e4907e1",
+      "name": "Tasneem kirana wala",
+      "phone": "",
+      "shares": 1,
+      "openedBefore": 0
+    },
+    {
+      "id": "6dd34d2c",
+      "name": "Nafisa Baghwala",
+      "phone": "",
+      "shares": 2,
+      "openedBefore": 1
+    },
+    {
+      "id": "c237cd24",
+      "name": "Tasneem Mohna wala",
+      "phone": "",
+      "shares": 2,
+      "openedBefore": 0
+    },
+    {
+      "id": "ff512e6b",
+      "name": "Fatema kanchwala",
+      "phone": "",
+      "shares": 2,
+      "openedBefore": 1
+    },
+    {
+      "id": "6fac8b02",
+      "name": "Arwa Indore",
+      "phone": "",
+      "shares": 1,
+      "openedBefore": 0
+    },
+    {
+      "id": "24f38219",
+      "name": "Mariya Raasiwala",
+      "phone": "",
+      "shares": 1,
+      "openedBefore": 0
+    },
+    {
+      "id": "6880ccbc",
+      "name": "sakina kirana wala",
+      "phone": "",
+      "shares": 1,
+      "openedBefore": 1
+    },
+    {
+      "id": "85bcc805",
+      "name": "farida bn Barodiya",
+      "phone": "",
+      "shares": 1,
+      "openedBefore": 1
+    },
+    {
+      "id": "e4086496",
+      "name": "Ruqaiya jamali",
+      "phone": "",
+      "shares": 1,
+      "openedBefore": 1
+    },
+    {
+      "id": "5a6bc146",
+      "name": "umme kulsum fidvi",
+      "phone": "",
+      "shares": 1,
+      "openedBefore": 1
+    }
+  ],
+  "draws": [],
+  "turns": []
+}
