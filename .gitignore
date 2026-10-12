@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# local data store used when Redis isn't configured
+.data/
+
+.env*.local
+.env
+.vercel
+.DS_Store
