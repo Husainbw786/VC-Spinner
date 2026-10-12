@@ -91,13 +91,28 @@ class FileStore implements Store {
 
 const globalStore = globalThis as unknown as { __committeeStore?: Store };
 
+/**
+ * Vercel's Upstash integration can add a custom prefix to its variables
+ * (e.g. VC_KV_REST_API_URL), so match on the name's ending. Unprefixed names win.
+ */
+function redisConfig(): { url: string; token: string } | null {
+  const candidates = Object.keys(process.env)
+    .filter((key) => /(KV_REST_API_URL|UPSTASH_REDIS_REST_URL)$/.test(key))
+    .sort((a, b) => a.length - b.length);
+  for (const key of candidates) {
+    const url = process.env[key];
+    const token = process.env[key.replace(/URL$/, "TOKEN")];
+    if (url && token) return { url, token };
+  }
+  return null;
+}
+
 export function getStore(): Store {
   if (globalStore.__committeeStore) return globalStore.__committeeStore;
-  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+  const redis = redisConfig();
   let store: Store;
-  if (url && token) {
-    store = new RedisStore(new Redis({ url, token }));
+  if (redis) {
+    store = new RedisStore(new Redis(redis));
   } else if (process.env.VERCEL) {
     throw new AppError(
       "Storage isn't connected yet. In Vercel, open this project → Storage → add Upstash Redis, then redeploy.",
